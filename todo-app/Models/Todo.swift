@@ -13,12 +13,14 @@ struct Todo {
     let status: Bool
     let date: String
     let title: String
+    let description: String
     
     
-    init(id: String? = nil, status: Bool? = nil, date: String? = nil, title: String? = nil) {
+    init(id: String? = nil, status: Bool? = nil, date: String? = nil, title: String? = nil, description: String? = nil) {
         self.id = id ?? ""
         self.status = status ?? false
         self.date = date ?? ""
         self.title = title ?? ""
+        self.description = description ?? ""
     }
 }
