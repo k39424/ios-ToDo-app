@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewTodoViewController: UIViewController {
 
@@ -15,14 +16,70 @@ class ViewTodoViewController: UIViewController {
     @IBOutlet weak var todoDate: UILabel!
     @IBOutlet weak var todoTitle: UILabel!
     
+    var todo = Todo()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-dd-MM"
+        
+        todoTitle.text = todo.title
+        todoStatus.text = todo.status == true ? "Done" : "Not Done"
+        todoDate.text = dateFormatter.string(from: todo.date)
     }
     
     @IBAction func barButtonBack(_ sender: Any) {
-    dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func buttonDoneTapped(_ sender: Any) {
+        toggleTodoStatus()
+    }
+    
+    @IBAction func buttonDeleteTapped(_ sender: Any) {
+        deleteTodo()
+    }
+    
+    private func toggleTodoStatus() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let request : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Todos")
+//        request.predicate = NSPredicate(format: "username", "")
+        
+        do {
+            let test = try context.fetch(request)
+            
+            let objectUpdate = test[0] as! NSManagedObject
+            objectUpdate.setValue(true, forKey: "status")
+            do {
+                try context.save()
+            } catch {
+                print("Error:\(error)")
+            }
+        } catch {
+            print("Can't update record")
+        }
+    }
+    
+    private func deleteTodo() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Todos")
+        
+        do {
+            let test = try context.fetch(request)
+            let objectToDelete = test[0] as! NSManagedObject
+            context.delete(objectToDelete)
+            
+            do {
+                try context.save()
+            } catch {
+                print("Error \(error)")
+            }
+            
+        } catch {
+            print("Error \(error)")
+        }
     }
     
     /*

@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
             let user = User(id: "1", apiToken: "token", name: "User", email: email, password: password)
             //instantiate storyboard
             let homeStoryBoard = UIStoryboard(name: "Home", bundle: nil)
-            
+            //way of passing data when we are instantiating a view controller to transition to other views instead of segue
             //instantiate a view controller with of type HomeTableViewController
             //if does not fail set the user to our current user then present
             if let homeViewController = homeStoryBoard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeTableViewController {

@@ -13,6 +13,7 @@ class HomeTableViewController: UITableViewController {
 
     //MARK: - Properties
     var todos = [Todo]()
+    var selectedTodo = Todo()
     var user = User()
     
     override func viewDidLoad() {
@@ -20,6 +21,8 @@ class HomeTableViewController: UITableViewController {
 
         print("Hello \(user.email)")
         generateTodos()
+//        addTodosToCoreData()
+        getTodosFromCoreData()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -46,18 +49,8 @@ class HomeTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        /*let cellIdentifier = "Cell"
-         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-         as? QuoteTableViewCell else {
-         fatalError("The dequeued cell is not an instance of QuoteTableViewCell.")
-         }
-         //        Fetches the appropriate quote for the data source layout
-         let qoute = quotesArray[indexPath.row]
-         
-         cell.messageLabel.text = qoute.message
-         cell.authorMessage.text = qoute.author
-         
-         return cell*/
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-dd-MM"
         
         let identifier = "TodoTableViewCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
@@ -66,8 +59,8 @@ class HomeTableViewController: UITableViewController {
         }
         
         let todo = todos[indexPath.row]
-        cell.todoStatus.text = "Done"
-        cell.todoDate.text = todo.date
+        cell.todoStatus.text = todo.status == true ? "Done" : "Not Done"
+        cell.todoDate.text = dateFormatter.string(from: todo.date)
         cell.todoTitle.text = todo.title
 
         return cell
@@ -113,65 +106,82 @@ class HomeTableViewController: UITableViewController {
     // MARK: - Navigation
 */
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let nc = segue.destination as? UINavigationController
+        
+        if  let vc = nc?.topViewController as? ViewTodoViewController {
+            let path = self.tableView.indexPathForSelectedRow
+            vc.todo = todos[path!.row]
+        }
+        
+        
 //
-//    }
+//        if let vc = segue.destination as? ViewTodoViewController {
+//            let path = self.tableView.indexPathForSelectedRow
+//            print("@ViewTodoController")
+//            selectedTodo = todos[path!.row]
+//            print("TODO: \(selectedTodo.title)")
+//            vc.todo = selectedTodo
+//        } else {
+//
+//        }
+    }
     
+    
+    //MARK: - Dummy Data Functions
+    
+    func dateRandomizer()->Date {
+        let date = Date()
+        let calendar = Calendar.current
+        let year = calendar.component(.year, from: date)
+        let month = calendar.component(.month, from: date)
+        let day = calendar.component(.day, from: date)
+        
+        let monthValue = Int.random(in: month..<12)
+        let dayValue = Int.random(in: day..<30)
+        
+        let dateString = "\(year)-\(dayValue)-\(monthValue)"
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateFormat = "yyyy-dd-MM"
+        print("Generated Date: \(dateFormatter.date(from: dateString)!)")
+        return dateFormatter.date(from: dateString)!
+    }
     
     func generateTodos() {
-        todos.append(Todo(id: "1", status: true, date: "2018-11-08", title: "Milk is gatas", description: "Buy Milk"))
-        todos.append(Todo(id: "2", status: false, date: "2018-11-09", title: "Hello World", description: "Say Hello to World"))
-        todos.append(Todo(id: "3", status: true, date: "2018-11-08", title: "Hello from Another World", description: "Say Hello to Another World"))
-        todos.append(Todo(id: "4", status: false, date: "2018-12-10", title: "Buy Batteries", description: "Out of Batteries buy 1"))
-        todos.append(Todo(id: "5", status: true, date: "2018-10-20", title: "Sleep", description: "Sleep"))
-        todos.append(Todo(id: "6", status: true, date: "2018-11-05", title: "I Dont Know", description: "I Also Dont know"))
-        todos.append(Todo(id: "7", status: false, date: "2018-12-05", title: "Do Nothing", description: "This is where Im good at"))
-        todos.append(Todo(id: "8", status: true, date: "2018-11-05", title: "Eat", description: "Eat"))
+        todos.append(Todo( status: true, date: dateRandomizer(), title: "Milk is gatas"))
+        todos.append(Todo( status: false, date: dateRandomizer(), title: "Hello World"))
+        todos.append(Todo( status: true, date: dateRandomizer(), title: "Hello from Another World"))
+        todos.append(Todo( status: false, date: dateRandomizer(), title: "Buy Batteries"))
+        todos.append(Todo( status: true, date: dateRandomizer(), title: "Sleep"))
+        todos.append(Todo( status: true, date: dateRandomizer(), title: "I Dont Know"))
+        todos.append(Todo( status: false, date: dateRandomizer(), title: "Do Nothing"))
+        todos.append(Todo( status: true, date: dateRandomizer(), title: "QWE"))
     }
 
     private func addTodosToCoreData() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Todos", in: context)
-        let newTodo = NSManagedObject(entity: entity!, insertInto: context)
+        generateTodos()
         
         for todo in todos {
-            newTodo.setValue(todo.id, forKey: "id")
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let entity = NSEntityDescription.entity(forEntityName: "Todos", in: context)
+            let newTodo = NSManagedObject(entity: entity!, insertInto: context)
+            
             newTodo.setValue(todo.title, forKey: "title")
-            newTodo.setValue(todo.description, forKey: "description")
+            newTodo.setValue(todo.date, forKey: "date")
             newTodo.setValue(todo.status, forKey: "status")
-        }
         
-        do {
-            try context.save()
-        } catch {
-            print("Cant save tasks")
+            do {
+                try context.save()
+                print("Todo Saved")
+                print("Date: \(todo.date)")
+            } catch {
+                print("Cant save tasks")
+            }
         }
     }
-    
-    //adding dummy users to core data
-//    private func addToCoreData(user: User) {
-//        //create delegate
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        //create context
-//        let context = appDelegate.persistentContainer.viewContext
-//        //create entity(it seems the a entity = table of database and columns are properties)
-//        let entity = NSEntityDescription.entity(forEntityName: "Users", in: context)
-//        //like create an object with properties coming from the entity
-//        let newUser = NSManagedObject(entity: entity!, insertInto: context)
-//        //add values
-//        newUser.setValue("1", forKey: "id")
-//        newUser.setValue("firstUser", forKey: "name")
-//        newUser.setValue("firstUser@email.com", forKey: "email")
-//        newUser.setValue("firstUser", forKey: "password")
-//        newUser.setValue(false, forKey: "isLoggedIn")
-//
-//        do {
-//            try context.save()
-//        } catch {
-//            print("Failed saving to Core Data")
-//        }
-//    }
     
     private func getTodosFromCoreData() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -182,29 +192,11 @@ class HomeTableViewController: UITableViewController {
             let result = try context.fetch(request)
             
             for data in result as! [NSManagedObject] {
-                print(data.value(forKey: "title") as! String)
+                todos.append(Todo(status: data.value(forKey: "status") as? Bool, date: data.value(forKey: "date") as? Date, title: data.value(forKey: "title") as? String))
             }
         } catch {
             print("Fetching Todos Failed")
         }
     }
     
-    //fetching data from the core data
-//    private func getFromCoreData() {
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        //create context
-//        let context = appDelegate.persistentContainer.viewContext
-//        //request that we will make to access the data from core data
-//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Users")
-//        request.returnsObjectsAsFaults = false
-//        do {
-//            let result = try context.fetch(request)
-//            for data in result as! [NSManagedObject] {
-//                print(data.value(forKey: "email") as! String)
-//            }
-//
-//        } catch {
-//            print("Failed")
-//        }
-//    }
 }

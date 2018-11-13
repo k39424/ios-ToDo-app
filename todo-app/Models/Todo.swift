@@ -9,18 +9,14 @@
 import Foundation
 
 struct Todo {
-    let id: String
     let status: Bool
-    let date: String
+    let date: Date
     let title: String
-    let description: String
     
     
-    init(id: String? = nil, status: Bool? = nil, date: String? = nil, title: String? = nil, description: String? = nil) {
-        self.id = id ?? ""
+    init(status: Bool? = nil, date: Date? = nil, title: String? = nil) {
         self.status = status ?? false
-        self.date = date ?? ""
+        self.date = date ?? Date()
         self.title = title ?? ""
-        self.description = description ?? ""
     }
 }
