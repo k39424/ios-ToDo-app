@@ -70,6 +70,7 @@ class ViewTodoViewController: UIViewController {
             let test = try context.fetch(request)
             let objectToDelete = test[0] as! NSManagedObject
             context.delete(objectToDelete)
+            print("Record Deleted")
             
             do {
                 try context.save()

@@ -7,11 +7,19 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RegisterViewController: UIViewController {
 
     //MARK: Properties
-    var presenter : RegisterPresenter? 
+    var presenter : RegisterPresenter?
+    var realm: Realm!
+    var dbManager = DBManager()
+//    var userList: Results<RealmUser> {
+//        get {
+//            return realm.objects(RealmUser.self)
+//        }
+//    }
     
     @IBOutlet weak var textFieldName: UITextField!
     @IBOutlet weak var textFieldEmail: UITextField!
@@ -22,6 +30,17 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
 
         presenter = RegisterPresenter(delegate: self)
+        realm = try! Realm()
+        
+//        let userList = realmGetUsers()
+        
+        let userList = self.presenter?.realmGetUsers()
+        
+        for user in userList! {
+            print("User:")
+            print(user.name)
+            print(user.email)
+        }
     }
     
     @IBAction func buttonRegisterTapped(_ sender: Any) {
@@ -30,12 +49,20 @@ class RegisterViewController: UIViewController {
         let password = textFieldPassword.text ?? ""
         let confirmPassword = textFieldConfirmPassword.text ?? ""
         
-        let isRegistered = self.presenter?.register(name: name, email: email, password: password, confirmPassword: confirmPassword)
+        let isValid = self.presenter?.register(name: name, email: email, password: password, confirmPassword: confirmPassword)
         
-        if isRegistered == true {
+        if isValid == true {
             print("Success")
         }
+        
+        let newUser = RealmUser()
+        newUser.name = name
+        newUser.email = email
+        newUser.password = password
+        self.presenter?.realmAddUser(user: newUser)
+//        realmAddUser(user: newUser)
     }
+    
     @IBAction func buttonCancelTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -49,7 +76,19 @@ class RegisterViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    func realmAddUser(user: RealmUser) {
+        try! self.realm.write {
+            realm.add(user)
+        }
+        print("User \(user.name) was added")
+    }
+    
+    func realmGetUsers()-> Results<RealmUser> {
+        let results: Results<RealmUser> = realm.objects(RealmUser.self)
+        return results
+    }
+    
 }
 
 extension RegisterViewController: RegisterDelegate {

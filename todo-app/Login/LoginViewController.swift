@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 
 class LoginViewController: UIViewController {
     //MARK: - Properties
@@ -34,17 +35,17 @@ class LoginViewController: UIViewController {
     @IBAction func buttonLoginTapped(_ sender: UIButton) {
         email = textFieldEmail.text ?? ""
         password = textFieldPassword.text ?? ""
-        let isLoggedIn = self.presenter?.login(email: email, password: password)
-        if isLoggedIn == true {
+        let loginResult = self.presenter?.userLogin(email: email, password: password)
+        if loginResult!.isValid == true && loginResult!.user.email.isEmpty == false {
             //create a new user object with the properties that we current get
-            let user = User(id: "1", apiToken: "token", name: "User", email: email, password: password)
+//            let user = User(id: "1", apiToken: "token", name: "User", email: email, password: password)
             //instantiate storyboard
             let homeStoryBoard = UIStoryboard(name: "Home", bundle: nil)
             //way of passing data when we are instantiating a view controller to transition to other views instead of segue
             //instantiate a view controller with of type HomeTableViewController
             //if does not fail set the user to our current user then present
             if let homeViewController = homeStoryBoard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeTableViewController {
-                homeViewController.user = user
+                homeViewController.user = loginResult!.user
                 self.present(homeViewController, animated: true, completion: nil)
             }
         }

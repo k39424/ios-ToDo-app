@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 protocol RegisterDelegate {
 //    func register(name: String, email: String, password: String)->String
@@ -17,8 +18,12 @@ protocol RegisterDelegate {
 class RegisterPresenter {
     var delegate : RegisterDelegate?
     
+    private var realm: Realm
+//    static let sharedInstance = RegisterPresenter()
+    
     init(delegate: RegisterDelegate) {
         self.delegate = delegate
+        self.realm = try! Realm()
     }
     
     func register(name: String, email: String, password: String, confirmPassword: String)->Bool {
@@ -47,4 +52,34 @@ class RegisterPresenter {
         return true
     }
     
+    
+    func realmGetUsers()-> Results<RealmUser> {
+        let results: Results<RealmUser> = realm.objects(RealmUser.self)
+        return results
+    }
+    
+    func realmAddUser(user: RealmUser)->Bool {
+        do {
+            try self.realm.write {
+                realm.add(user)
+            }
+        } catch {
+            print("\(user.name) was not added")
+            return false
+        }
+        return true
+    }
+    
+    func realmDeleteUser(user: RealmUser)->Bool {
+        do {
+            try self.realm.write {
+                realm.delete(user)
+            }
+        } catch {
+            print("\(user.name) was not deleted")
+            return false
+        }
+        print("\(user.name) was added")
+        return true
+    }
 }
