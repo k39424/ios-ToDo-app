@@ -138,7 +138,7 @@
                             </items>
                         </navigationBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoTableViewCell" rowHeight="100" id="SHx-fg-ujS" customClass="TodoTableViewCell" customModule="todo_app" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoTableViewCell" rowHeight="100" id="SHx-fg-ujS" userLabel="TodoTableViewCell" customClass="TodoTableViewCell" customModule="todo_app" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SHx-fg-ujS" id="4tb-uF-Ria">
@@ -169,21 +169,35 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdi-4s-YcU" userLabel="ButtonStatusToggle">
+                                            <rect key="frame" x="324" y="32" width="35" height="36"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="0jm-aV-gFU"/>
+                                                <constraint firstAttribute="width" constant="35" id="imI-DO-y19"/>
+                                            </constraints>
+                                            <state key="normal" title="Button" image="checkbox-unchecked-48px"/>
+                                            <connections>
+                                                <action selector="buttonStatusTapped:" destination="SHx-fg-ujS" eventType="touchUpInside" id="NpW-zH-1yF"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="UUX-mo-JN8" firstAttribute="top" secondItem="oSr-rH-tNo" secondAttribute="bottom" constant="14" id="7WW-e7-Pgh"/>
                                         <constraint firstItem="ItF-tT-LyH" firstAttribute="top" secondItem="4tb-uF-Ria" secondAttribute="topMargin" id="C8W-ba-dQV"/>
                                         <constraint firstItem="h8h-oy-qu5" firstAttribute="leading" secondItem="UUX-mo-JN8" secondAttribute="trailing" constant="28" id="Dev-qX-DqM"/>
+                                        <constraint firstItem="Rdi-4s-YcU" firstAttribute="trailing" secondItem="4tb-uF-Ria" secondAttribute="trailingMargin" id="Gl8-kN-GZB"/>
                                         <constraint firstItem="ItF-tT-LyH" firstAttribute="leading" secondItem="oSr-rH-tNo" secondAttribute="trailing" constant="19" id="PEf-hJ-ASi"/>
                                         <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="h8h-oy-qu5" secondAttribute="trailing" constant="12" id="XHW-h6-EvO"/>
                                         <constraint firstItem="h8h-oy-qu5" firstAttribute="top" secondItem="ItF-tT-LyH" secondAttribute="bottom" constant="14" id="YE1-ty-l7U"/>
                                         <constraint firstItem="oSr-rH-tNo" firstAttribute="leading" secondItem="4tb-uF-Ria" secondAttribute="leadingMargin" constant="18" id="dgV-aU-rsj"/>
                                         <constraint firstItem="UUX-mo-JN8" firstAttribute="leading" secondItem="4tb-uF-Ria" secondAttribute="leadingMargin" constant="18" id="fB9-Ye-aXI"/>
+                                        <constraint firstItem="Rdi-4s-YcU" firstAttribute="centerY" secondItem="4tb-uF-Ria" secondAttribute="centerY" id="fmT-Te-Ca7"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="h8h-oy-qu5" secondAttribute="bottom" constant="32" id="ghc-hu-HPe"/>
                                         <constraint firstItem="oSr-rH-tNo" firstAttribute="top" secondItem="4tb-uF-Ria" secondAttribute="topMargin" id="iFT-VT-rCv"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="buttonStatus" destination="Rdi-4s-YcU" id="4hK-ZO-bff"/>
                                     <outlet property="todoStatus" destination="ItF-tT-LyH" id="ysh-mC-mQ6"/>
                                     <outlet property="todoTitle" destination="h8h-oy-qu5" id="84P-Ie-a1g"/>
                                     <segue destination="Ut4-zx-H51" kind="show" id="dGX-uY-3PN"/>
@@ -205,7 +219,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4vI-jo-b1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="991.875" y="-106.69014084507042"/>
+            <point key="canvasLocation" x="991.20000000000005" y="-107.49625187406298"/>
         </scene>
         <!--TODO-->
         <scene sceneID="HYe-4L-oIH">
@@ -366,6 +380,9 @@
             <point key="canvasLocation" x="992" y="697"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="checkbox-unchecked-48px" width="36" height="36"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1TR-zh-S9E"/>
     </inferredMetricsTieBreakers>

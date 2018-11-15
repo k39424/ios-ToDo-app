@@ -89,15 +89,34 @@ class RegisterViewController: UIViewController {
         return results
     }
     
+    private func showDialog(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+            NSLog("Ok", [])
+        }
+        
+        //        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (UIAlertAction) in
+        //            NSLog("Cancel", [])
+        //        }
+        
+        alertController.addAction(okAction)
+        //        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 }
 
 extension RegisterViewController: RegisterDelegate {
     func registrationFailed(message: String) {
         print(message)
+        showDialog(title: "Registration Failed", message: message)
     }
     
     func registrationSuccess(message: String) {
         print(message)
+        dismiss(animated: true, completion: nil)
     }
     
 }

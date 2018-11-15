@@ -55,7 +55,29 @@ extension HomePresenter {
         return true
     }
     
-    func realmEditTodo(todo: RealmTodo)->Bool {
+    func realmEditTodo(todo: RealmTodo, task: String)->Bool {
+        do {
+            try realm.write {
+                todo.task = task
+            }
+        } catch {
+            self.delegate.operationResult(message: "Failed to Update Todo")
+            return false
+        }
+        
+        return true
+    }
+    
+    func realmToggleStatus(todo: RealmTodo, status: Bool)-> Bool {
+        do {
+            try realm.write {
+                todo.status = status
+            }
+        } catch {
+            self.delegate.operationResult(message: "Failed to Toggle Status")
+            return false
+        }
+        
         return true
     }
     

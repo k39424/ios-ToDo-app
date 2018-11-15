@@ -10,9 +10,13 @@ import UIKit
 
 class TodoTableViewCell: UITableViewCell {
     
+    //MARK: -Properties
+    
     @IBOutlet weak var todoStatus: UILabel!
-    @IBOutlet weak var todoDate: UILabel!
     @IBOutlet weak var todoTitle: UILabel!
+    @IBOutlet weak var buttonStatus: UIButton!
+    
+    var delegate: TodoCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,5 +28,8 @@ class TodoTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    @IBAction func buttonStatusTapped(_ sender: UIButton) {
+        self.delegate?.todoStatusToggle(self)
+    }
 }

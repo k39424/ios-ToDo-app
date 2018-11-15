@@ -11,11 +11,11 @@ import CoreData
 import RealmSwift
 
 class HomeTableViewController: UITableViewController {
-
     //MARK: - Properties
     var todos = [Todo]()
     var selectedTodo = Todo()
     var user = User()
+    var itemsToken : NotificationToken?
     var presenter : HomePresenter?
     var todoList : Results<RealmTodo>? = nil
     
@@ -34,6 +34,50 @@ class HomeTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        itemsToken = todoList?.observe { [weak tableView] changes in
+        guard let tableView = tableView else { return }
+            switch changes {
+                case .initial:
+                    tableView.reloadData()
+                case .update(_, let deletions, let insertions, let updates):
+                    let fromRow = {(row: Int) in
+                        return IndexPath(row: row, section: 0)}
+//                    tableView.reloadData()
+                    tableView.deleteRows(at: deletions.map(fromRow), with: .automatic)
+                    tableView.insertRows(at: insertions.map(fromRow), with: .automatic)
+                    tableView.reloadRows(at: updates.map(fromRow), with: .automatic)
+            
+                
+//                    tableView.applyChanges(deletions: deletions, insertions: insertions, updates: updates)
+                default: break
+            }
+        }
+        
+//        case .update(_, let deletions, let insertions, let updates):
+//        let fromRow = {(row: Int) in
+//            return IndexPath(row: row, section: 0)}
+//
+//        beginUpdates()
+//        deleteRows(at: deletions.map(fromRow), with: .automatic)
+//        insertRows(at: insertions.map(fromRow), with: .automatic)
+//        reloadRows(at: updates.map(fromRow), with: .none)
+//        endUpdates()
+        
+        
+        /*itemsToken = items?.observe { [weak tableView] changes in
+         guard let tableView = tableView else { return }
+         
+         switch changes {
+         case .initial:
+         tableView.reloadData()
+         case .update(_, let deletions, let insertions, let updates):
+         tableView.applyChanges(deletions: deletions, insertions: insertions, updates: updates)
+         case .error: break
+         }
+         }*/
     }
     
     @IBAction func barButtonBack(_ sender: Any) {
@@ -69,11 +113,60 @@ class HomeTableViewController: UITableViewController {
 //        cell.todoDate.text = dateFormatter.string(from: todo.date)
 //        cell.todoTitle.text = todo.title
         let todo = todoList?[indexPath.row]
-        print("TableView Todo: \(todo?.task)")
+        cell.delegate = self
+//        print("TableView Todo: \(todo?.task)")
+        if todo?.status == true {
+            cell.buttonStatus.setImage(#imageLiteral(resourceName: "checkbox-checked-48px"), for: .normal)
+            
+        } else {
+            cell.buttonStatus.setImage(#imageLiteral(resourceName: "checkbox-unchecked-48px"), for: .highlighted)
+        }
+        
         cell.todoTitle.text = todo?.task
         cell.todoStatus.text = todo?.status == true ? "Done" : "Not Done"
 
         return cell
+    }
+    
+    private func showDialog(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+            NSLog("Ok", [])
+        }
+        
+        //        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (UIAlertAction) in
+        //            NSLog("Cancel", [])
+        //        }
+        
+        alertController.addAction(okAction)
+        //        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    //adding dummy users to core data
+    private func addToCoreData(user: User) {
+        //create delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        //create context
+        let context = appDelegate.persistentContainer.viewContext
+        //create entity(it seems the a entity = table of database and columns are properties)
+        let entity = NSEntityDescription.entity(forEntityName: "Users", in: context)
+        //like create an object with properties coming from the entity
+        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        //add values
+        newUser.setValue("1", forKey: "id")
+        newUser.setValue("firstUser", forKey: "name")
+        newUser.setValue("firstUser@email.com", forKey: "email")
+        newUser.setValue("firstUser", forKey: "password")
+        newUser.setValue(false, forKey: "isLoggedIn")
+        
+        do {
+            try context.save()
+        } catch {
+            print("Failed saving to Core Data")
+        }
     }
  
 
@@ -216,9 +309,56 @@ class HomeTableViewController: UITableViewController {
     }
 }
 
+//extension HomeTableViewController: TodoCellDelegate {
+//    func todoStatusToggle(_ sender: TodoTableViewCell) {
+////        guard let tappedIndexPath = tableView.indexPath(for: sender) else { return }
+////        print("Cell Clicked")
+////        let index = tableView.indexPath(for: sender)
+////        print("Cell Clicked!", sender, index)
+//        print("Cell CLicked @ ViewController")
+//
+//        /* guard let tappedIndexPath = tableView.indexPath(for: sender) else { return }
+//         print("Heart", sender, tappedIndexPath)
+//
+//         // "Love" this item
+//         items[tappedIndexPath.row].love()*/
+//    }
+//
+//
+//}
+
 
 extension HomeTableViewController: HomeDelegate {
     func operationResult(message: String) {
         print(message)
+    }
+}
+
+extension HomeTableViewController: TodoCellDelegate {
+    func todoStatusToggle(_ sender: TodoTableViewCell) {
+        guard let tappedIndexPath = tableView.indexPath(for: sender) else { return }
+        let todoToEdit = todoList![tappedIndexPath.row]
+        let newStatus = !todoList![tappedIndexPath.row].status
+        print("Todo To Toggle: \(todoToEdit.task) Status: \(todoToEdit.status)")
+        
+        print("New Status: \(newStatus)")
+        print("Cell Clicked @ViewController", sender, tappedIndexPath)
+        
+         let isToggled = self.presenter?.realmToggleStatus(todo: todoToEdit, status: newStatus)
+        if isToggled == true {
+            
+            let cell = self.tableView.cellForRow(at: tappedIndexPath) as! TodoTableViewCell
+            if newStatus == true {
+                print("Toggling to Checked")
+                cell.buttonStatus.setImage(#imageLiteral(resourceName: "checkbox-checked-48px"), for: .normal)
+            } else {
+                print("Toggling to UnChecked")
+                cell.buttonStatus.setImage(#imageLiteral(resourceName: "checkbox-unchecked-48px"), for: .normal)
+            }
+//            showDialog(title: "Todo was toggled", message: "This is still not real time. Restart to see result")
+        }
+//        guard let tappedIndexPath = tableView.indexPath(for: sender) else { return }
+//        print("Trash", sender, tappedIndexPath)
+        
     }
 }
