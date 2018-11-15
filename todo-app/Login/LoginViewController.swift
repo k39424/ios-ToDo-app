@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
     @IBAction func buttonLoginTapped(_ sender: UIButton) {
         email = textFieldEmail.text ?? ""
         password = textFieldPassword.text ?? ""
-        let loginResult = self.presenter?.userLogin(email: email, password: password)
+        let loginResult = self.presenter?.login(email: email, password: password)
         if loginResult!.isValid == true && loginResult!.user.email.isEmpty == false {
             //create a new user object with the properties that we current get
 //            let user = User(id: "1", apiToken: "token", name: "User", email: email, password: password)
@@ -76,12 +76,12 @@ class LoginViewController: UIViewController {
             NSLog("Ok", [])
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (UIAlertAction) in
-            NSLog("Cancel", [])
-        }
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (UIAlertAction) in
+//            NSLog("Cancel", [])
+//        }
         
         alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
+//        alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
     }
@@ -133,6 +133,7 @@ class LoginViewController: UIViewController {
 extension LoginViewController: LoginDelegate {
     func loginFailed(message: String) {
         print(message)
+        showDialog(title: "Login Failed", message: message)
     }
     
     func loginSucceed(message: String) {

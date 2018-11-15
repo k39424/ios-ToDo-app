@@ -10,6 +10,7 @@
 		4C11E4DC219574FC00661F8C /* ViewTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C11E4DB219574FC00661F8C /* ViewTodoViewController.swift */; };
 		4C1C83A4219BE26F00DE075E /* RealmTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C83A3219BE26E00DE075E /* RealmTodo.swift */; };
 		4C1C83A6219BE34000DE075E /* RealmUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C83A5219BE34000DE075E /* RealmUser.swift */; };
+		4C1C83A8219CFEDC00DE075E /* HomeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C83A7219CFEDC00DE075E /* HomeDelegate.swift */; };
 		4C368D7F21951A1800ED0537 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C368D7E21951A1800ED0537 /* Home.storyboard */; };
 		4C368D85219535C500ED0537 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C368D84219535C500ED0537 /* HomeTableViewController.swift */; };
 		4C368D892195381600ED0537 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C368D882195381600ED0537 /* Todo.swift */; };
@@ -55,6 +56,7 @@
 		4C11E4DB219574FC00661F8C /* ViewTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTodoViewController.swift; sourceTree = "<group>"; };
 		4C1C83A3219BE26E00DE075E /* RealmTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTodo.swift; sourceTree = "<group>"; };
 		4C1C83A5219BE34000DE075E /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
+		4C1C83A7219CFEDC00DE075E /* HomeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDelegate.swift; sourceTree = "<group>"; };
 		4C368D7E21951A1800ED0537 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		4C368D84219535C500ED0537 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		4C368D882195381600ED0537 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				4C368D7E21951A1800ED0537 /* Home.storyboard */,
+				4C1C83A7219CFEDC00DE075E /* HomeDelegate.swift */,
 				4C368D84219535C500ED0537 /* HomeTableViewController.swift */,
 				4C3BF4B621954E8000F53AC7 /* TodoTableViewCell.swift */,
 				4C11E4DB219574FC00661F8C /* ViewTodoViewController.swift */,
@@ -423,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CD0F9DE2193FC5B005679BD /* LoginViewController.swift in Sources */,
+				4C1C83A8219CFEDC00DE075E /* HomeDelegate.swift in Sources */,
 				4CD0F9E02193FC6C005679BD /* LoginDelegate.swift in Sources */,
 				4C1C83A6219BE34000DE075E /* RealmUser.swift in Sources */,
 				4CD0F9E42194049C005679BD /* User.swift in Sources */,

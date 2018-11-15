@@ -7,14 +7,14 @@
 //
 
 import Foundation
+import RealmSwift
 
-class RealmTodo {
-    @objc dynamic var task: String
-    @objc dynamic var status: Bool
+class RealmTodo: Object {
+    @objc dynamic var task = ""
+    @objc dynamic var status = false
     
-    init(task: String, status: Bool) {
-        self.task = task
-        self.status = status
-    }
-    
+//    init(task: String, status: Bool) {
+//        self.task = task
+//        self.status = status
+//    }
 }

@@ -12,13 +12,14 @@ import CoreData
 class AddTodoViewController: UIViewController {
 
     //MARK: Properties
-    var todo = Todo()
+//    var todo = Todo()
+    var presenter : HomePresenter?
+    
     @IBOutlet weak var textFieldTodo: UITextField!
-    @IBOutlet weak var datePickerTodo: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        presenter = HomePresenter(delegate: self)
         // Do any additional setup after loading the view.
     }
     
@@ -29,31 +30,34 @@ class AddTodoViewController: UIViewController {
     }
     
     @IBAction func buttonSaveTapped(_ sender: Any) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-dd-MM"
-        dateFormatter.timeStyle = .none
         
-        let todoTitle = textFieldTodo.text ?? ""
-        let todoDate = datePickerTodo.date
-        print("Date Value: \(todoDate)")
-
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
+        self.presenter?.AddTodo(task: textFieldTodo.text ?? "")
+        
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-dd-MM"
+//        dateFormatter.timeStyle = .none
+//
+//        let todoTitle = textFieldTodo.text ?? ""
+//        let todoDate = datePickerTodo.date
+//        print("Date Value: \(todoDate)")
+//
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let context = appDelegate.persistentContainer.viewContext
+////        let entity = NSEntityDescription.entity(forEntityName: "Todos", in: context)
+//
 //        let entity = NSEntityDescription.entity(forEntityName: "Todos", in: context)
-        
-        let entity = NSEntityDescription.entity(forEntityName: "Todos", in: context)
-        
-        let newTodo = NSManagedObject(entity: entity!, insertInto: context)
-        newTodo.setValue(todoTitle, forKey:"title")
-        newTodo.setValue(todoDate, forKey: "date")
-        newTodo.setValue(false, forKey:"status")
-        
-        do {
-            try context.save()
-        } catch {
-            print("Cant save todo")
-        }
-        dismiss(animated: true, completion: nil)
+//
+//        let newTodo = NSManagedObject(entity: entity!, insertInto: context)
+//        newTodo.setValue(todoTitle, forKey:"title")
+//        newTodo.setValue(todoDate, forKey: "date")
+//        newTodo.setValue(false, forKey:"status")
+//
+//        do {
+//            try context.save()
+//        } catch {
+//            print("Cant save todo")
+//        }
+//        dismiss(animated: true, completion: nil)
     }
     
     /*
@@ -66,4 +70,10 @@ class AddTodoViewController: UIViewController {
     }
     */
 
+}
+
+extension AddTodoViewController: HomeDelegate {
+    func operationResult(message: String) {
+        print(message)
+    }
 }

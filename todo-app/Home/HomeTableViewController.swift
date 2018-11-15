@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 
 class HomeTableViewController: UITableViewController {
 
@@ -15,14 +16,18 @@ class HomeTableViewController: UITableViewController {
     var todos = [Todo]()
     var selectedTodo = Todo()
     var user = User()
+    var presenter : HomePresenter?
+    var todoList : Results<RealmTodo>? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        presenter = HomePresenter(delegate: self)
         print("Hello \(user.email)")
-        generateTodos()
+        getTodos()
+//        generateTodos()
 //        addTodosToCoreData()
-        getTodosFromCoreData()
+//        getTodosFromCoreData()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -44,24 +49,29 @@ class HomeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return todos.count
+        return todoList?.count ?? 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-dd-MM"
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-dd-MM"
         
+        print("At TableView")
         let identifier = "TodoTableViewCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
             as? TodoTableViewCell else {
                 fatalError("Cell is not TodoTableViewCell")
         }
         
-        let todo = todos[indexPath.row]
-        cell.todoStatus.text = todo.status == true ? "Done" : "Not Done"
-        cell.todoDate.text = dateFormatter.string(from: todo.date)
-        cell.todoTitle.text = todo.title
+//        let todo = todos[indexPath.row]
+//        cell.todoStatus.text = todo.status == true ? "Done" : "Not Done"
+//        cell.todoDate.text = dateFormatter.string(from: todo.date)
+//        cell.todoTitle.text = todo.title
+        let todo = todoList?[indexPath.row]
+        print("TableView Todo: \(todo?.task)")
+        cell.todoTitle.text = todo?.task
+        cell.todoStatus.text = todo?.status == true ? "Done" : "Not Done"
 
         return cell
     }
@@ -111,11 +121,11 @@ class HomeTableViewController: UITableViewController {
         
         if  let vc = nc?.topViewController as? ViewTodoViewController {
             let path = self.tableView.indexPathForSelectedRow
-            vc.todo = todos[path!.row]
+//            vc.todo = todos[path!.row]
+            vc.realmTodo = (todoList?[path!.row])!
+//            vc.realmTodo = ((todoList?[(path?.row)!])!)
         }
         
-        
-//
 //        if let vc = segue.destination as? ViewTodoViewController {
 //            let path = self.tableView.indexPathForSelectedRow
 //            print("@ViewTodoController")
@@ -127,9 +137,15 @@ class HomeTableViewController: UITableViewController {
 //        }
     }
     
+    //MARK: Private Functions
+    private func getTodos() {
+        todoList = self.presenter?.realmGetTodos()
+        for getTodo in todoList! {
+            print("Todo: \(getTodo.task)")
+        }
+    }
     
     //MARK: - Dummy Data Functions
-    
     func dateRandomizer()->Date {
         let date = Date()
         let calendar = Calendar.current
@@ -198,5 +214,11 @@ class HomeTableViewController: UITableViewController {
             print("Fetching Todos Failed")
         }
     }
-    
+}
+
+
+extension HomeTableViewController: HomeDelegate {
+    func operationResult(message: String) {
+        print(message)
+    }
 }

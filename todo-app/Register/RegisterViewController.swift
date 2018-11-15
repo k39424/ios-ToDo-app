@@ -93,10 +93,11 @@ class RegisterViewController: UIViewController {
 
 extension RegisterViewController: RegisterDelegate {
     func registrationFailed(message: String) {
+        print(message)
     }
     
     func registrationSuccess(message: String) {
-        
+        print(message)
     }
     
 }
