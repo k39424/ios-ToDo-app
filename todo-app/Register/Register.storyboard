@@ -115,6 +115,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Register" id="T4r-9h-B2d"/>
                     <connections>
+                        <outlet property="buttonRegister" destination="Iy8-e0-xzu" id="cEn-8a-qPo"/>
                         <outlet property="textFieldConfirmPassword" destination="p4p-UG-2La" id="ue7-iO-dBk"/>
                         <outlet property="textFieldEmail" destination="1nw-30-Kwx" id="Zp7-Hh-RYg"/>
                         <outlet property="textFieldName" destination="oZv-l6-NxA" id="Jzs-Z8-baq"/>

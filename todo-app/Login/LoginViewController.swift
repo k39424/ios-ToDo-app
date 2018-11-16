@@ -28,6 +28,8 @@ class LoginViewController: UIViewController {
         textFieldEmail.layer.cornerRadius = 10
         textFieldPassword.layer.cornerRadius = 10
         presenter = LoginPresenter(delegate: self)  //setup our presenter
+        textFieldEmail.text = ""
+        textFieldPassword.text = ""
         getFromCoreData()
     }
     
@@ -53,6 +55,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func buttonRegisterTapped(_ sender: UIButton) {
         //used story board in here lol
+        textFieldEmail.text = ""
+        textFieldPassword.text = ""
     }
     
     /*

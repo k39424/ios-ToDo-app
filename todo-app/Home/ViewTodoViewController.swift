@@ -16,6 +16,7 @@ class ViewTodoViewController: UIViewController {
     @IBOutlet weak var todoStatus: UILabel!
 //    @IBOutlet weak var todoDate: UILabel!
     @IBOutlet weak var todoTitle: UILabel!
+    @IBOutlet weak var buttonDelete: UIButton!
     
     var todo = Todo()
     var realmTodo = RealmTodo()
@@ -23,6 +24,7 @@ class ViewTodoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = HomePresenter(delegate: self)
+        buttonDelete.isEnabled = true
 //        let dateFormatter = DateFormatter()
 //        dateFormatter.dateFormat = "yyyy-dd-MM"
 //
@@ -41,6 +43,7 @@ class ViewTodoViewController: UIViewController {
     
     @IBAction func buttonDeleteTapped(_ sender: Any) {
 //        deleteTodo()
+        buttonDelete.isEnabled = false
         let isDeleted = self.presenter?.realmDeleteTodo(todo: realmTodo)
         if isDeleted == true {
             dismiss(animated: true, completion: nil)

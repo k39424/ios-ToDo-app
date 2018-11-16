@@ -48,14 +48,27 @@ class HomeTableViewController: UITableViewController {
                         return IndexPath(row: row, section: 0)}
 //                    tableView.reloadData()
 //                    print("Row Index= \(fromRow)")
-                    tableView.deleteRows(at: deletions.map(fromRow), with: .automatic)
-                    tableView.insertRows(at: insertions.map(fromRow), with: .automatic)
-                    tableView.reloadRows(at: updates.map(fromRow), with: .automatic)
+                    print("@viewWillAppear Insertion: \(insertions.count) deletions: \(deletions.count) updates: \(updates.count)")
+                    
+                    if insertions.count > 0 {
+                        print("@insertion")
+                        tableView.insertRows(at: insertions.map(fromRow), with: .automatic)
+                    } else if deletions.count > 0 {
+                        print("@deletions")
+                        tableView.deleteRows(at: deletions.map(fromRow), with: .automatic)
+                    } else if updates.count > 0 {
+                        print("@updates")
+                        tableView.reloadRows(at: updates.map(fromRow), with: .automatic)
+                    } else {
+                        print("Nothing to do here")
+                    }
+//                    tableView.insertRows(at: insertions.map(fromRow), with: .automatic)
+//                    tableView.reloadRows(at: updates.map(fromRow), with: .automatic)
+//                    tableView.deleteRows(at: deletions.map(fromRow), with: .automatic)
                 break
                 
 //                    tableView.applyChanges(deletions: deletions, insertions: insertions, updates: updates)
                 default: break
-                self.itemsToken?.invalidate()
             }
         }
         
@@ -81,6 +94,10 @@ class HomeTableViewController: UITableViewController {
          case .error: break
          }
          }*/
+    }
+    
+    @IBAction func barButtonLogoutTapped(_ sender: Any) {
+        logout()
     }
     
     @IBAction func barButtonBack(_ sender: Any) {
@@ -137,13 +154,26 @@ class HomeTableViewController: UITableViewController {
             NSLog("Ok", [])
         }
         
-        //        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (UIAlertAction) in
-        //            NSLog("Cancel", [])
-        //        }
-        
         alertController.addAction(okAction)
-        //        alertController.addAction(cancelAction)
+    }
+    
+    private func logout() {
+        //show dialog for logout confirmation
+        let alertController = UIAlertController(title: "Logout", message: "Are you sure you want to logout?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) {(UIAlertAction) in
+            NSLog("Yes", [])
+            
+            let storyBoard = UIStoryboard(name: "Login", bundle: nil)
+            let loginViewController = storyBoard.instantiateViewController(withIdentifier: "Login")
+            self.present(loginViewController, animated: true, completion: nil)
+        }
         
+        let noAction = UIAlertAction(title: "No", style: .default) {(UIAlertAction) in
+            NSLog("No", [])
+        }
+        
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
         self.present(alertController, animated: true, completion: nil)
     }
     

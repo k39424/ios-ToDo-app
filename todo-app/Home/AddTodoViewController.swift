@@ -16,10 +16,12 @@ class AddTodoViewController: UIViewController {
     var presenter : HomePresenter?
     
     @IBOutlet weak var textFieldTodo: UITextField!
+    @IBOutlet weak var buttonSave: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = HomePresenter(delegate: self)
+        buttonSave.isEnabled = true
         // Do any additional setup after loading the view.
     }
     
@@ -30,7 +32,7 @@ class AddTodoViewController: UIViewController {
     }
     
     @IBAction func buttonSaveTapped(_ sender: Any) {
-        
+        buttonSave.isEnabled = false
         let isSuccess = self.presenter?.AddTodo(task: textFieldTodo.text ?? "")
         if isSuccess == true {
             dismiss(animated: true, completion: nil)
