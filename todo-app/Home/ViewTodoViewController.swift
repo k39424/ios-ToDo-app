@@ -39,13 +39,12 @@ class ViewTodoViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func buttonDoneTapped(_ sender: Any) {
-//        toggleTodoStatus()
-    }
-    
     @IBAction func buttonDeleteTapped(_ sender: Any) {
 //        deleteTodo()
-        self.presenter?.realmDeleteTodo(todo: realmTodo)
+        let isDeleted = self.presenter?.realmDeleteTodo(todo: realmTodo)
+        if isDeleted == true {
+            dismiss(animated: true, completion: nil)
+        }
     }
 
     //MARK: - Private Functions

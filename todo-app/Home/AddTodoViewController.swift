@@ -31,7 +31,10 @@ class AddTodoViewController: UIViewController {
     
     @IBAction func buttonSaveTapped(_ sender: Any) {
         
-        self.presenter?.AddTodo(task: textFieldTodo.text ?? "")
+        let isSuccess = self.presenter?.AddTodo(task: textFieldTodo.text ?? "")
+        if isSuccess == true {
+            dismiss(animated: true, completion: nil)
+        }
         
 //        let dateFormatter = DateFormatter()
 //        dateFormatter.dateFormat = "yyyy-dd-MM"

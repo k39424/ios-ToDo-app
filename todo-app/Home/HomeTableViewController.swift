@@ -42,17 +42,20 @@ class HomeTableViewController: UITableViewController {
             switch changes {
                 case .initial:
                     tableView.reloadData()
+                    break
                 case .update(_, let deletions, let insertions, let updates):
                     let fromRow = {(row: Int) in
                         return IndexPath(row: row, section: 0)}
 //                    tableView.reloadData()
+//                    print("Row Index= \(fromRow)")
                     tableView.deleteRows(at: deletions.map(fromRow), with: .automatic)
                     tableView.insertRows(at: insertions.map(fromRow), with: .automatic)
                     tableView.reloadRows(at: updates.map(fromRow), with: .automatic)
-            
+                break
                 
 //                    tableView.applyChanges(deletions: deletions, insertions: insertions, updates: updates)
                 default: break
+                self.itemsToken?.invalidate()
             }
         }
         
@@ -114,17 +117,16 @@ class HomeTableViewController: UITableViewController {
 //        cell.todoTitle.text = todo.title
         let todo = todoList?[indexPath.row]
         cell.delegate = self
-//        print("TableView Todo: \(todo?.task)")
-        if todo?.status == true {
-            cell.buttonStatus.setImage(#imageLiteral(resourceName: "checkbox-checked-48px"), for: .normal)
-            
-        } else {
-            cell.buttonStatus.setImage(#imageLiteral(resourceName: "checkbox-unchecked-48px"), for: .highlighted)
-        }
         
         cell.todoTitle.text = todo?.task
         cell.todoStatus.text = todo?.status == true ? "Done" : "Not Done"
 
+        if todo?.status == true {
+            cell.buttonStatus.setImage(#imageLiteral(resourceName: "checkbox-checked-48px"), for: .normal)
+        } else {
+            cell.buttonStatus.setImage(#imageLiteral(resourceName: "checkbox-unchecked-48px"), for: .normal)
+        }
+        
         return cell
     }
     
@@ -217,17 +219,9 @@ class HomeTableViewController: UITableViewController {
 //            vc.todo = todos[path!.row]
             vc.realmTodo = (todoList?[path!.row])!
 //            vc.realmTodo = ((todoList?[(path?.row)!])!)
+        } else if let avc = nc?.topViewController as? AddTodoViewController {
+            self.itemsToken?.invalidate()
         }
-        
-//        if let vc = segue.destination as? ViewTodoViewController {
-//            let path = self.tableView.indexPathForSelectedRow
-//            print("@ViewTodoController")
-//            selectedTodo = todos[path!.row]
-//            print("TODO: \(selectedTodo.title)")
-//            vc.todo = selectedTodo
-//        } else {
-//
-//        }
     }
     
     //MARK: Private Functions
@@ -309,25 +303,6 @@ class HomeTableViewController: UITableViewController {
     }
 }
 
-//extension HomeTableViewController: TodoCellDelegate {
-//    func todoStatusToggle(_ sender: TodoTableViewCell) {
-////        guard let tappedIndexPath = tableView.indexPath(for: sender) else { return }
-////        print("Cell Clicked")
-////        let index = tableView.indexPath(for: sender)
-////        print("Cell Clicked!", sender, index)
-//        print("Cell CLicked @ ViewController")
-//
-//        /* guard let tappedIndexPath = tableView.indexPath(for: sender) else { return }
-//         print("Heart", sender, tappedIndexPath)
-//
-//         // "Love" this item
-//         items[tappedIndexPath.row].love()*/
-//    }
-//
-//
-//}
-
-
 extension HomeTableViewController: HomeDelegate {
     func operationResult(message: String) {
         print(message)
@@ -350,15 +325,14 @@ extension HomeTableViewController: TodoCellDelegate {
             let cell = self.tableView.cellForRow(at: tappedIndexPath) as! TodoTableViewCell
             if newStatus == true {
                 print("Toggling to Checked")
-                cell.buttonStatus.setImage(#imageLiteral(resourceName: "checkbox-checked-48px"), for: .normal)
+//                cell.buttonStatus.setImage(#imageLiteral(resourceName: "checkbox-checked-48px"), for: .normal)
             } else {
                 print("Toggling to UnChecked")
-                cell.buttonStatus.setImage(#imageLiteral(resourceName: "checkbox-unchecked-48px"), for: .normal)
+//                cell.buttonStatus.setImage(#imageLiteral(resourceName: "checkbox-unchecked-48px"), for: .normal)
             }
-//            showDialog(title: "Todo was toggled", message: "This is still not real time. Restart to see result")
+            
         }
 //        guard let tappedIndexPath = tableView.indexPath(for: sender) else { return }
 //        print("Trash", sender, tappedIndexPath)
-        
     }
 }
