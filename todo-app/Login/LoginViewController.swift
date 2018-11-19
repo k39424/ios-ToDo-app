@@ -33,6 +33,16 @@ class LoginViewController: UIViewController {
         getFromCoreData()
     }
     
+    @IBAction func buttonSeeOnlineJokesTapped(_ sender: Any) {
+        print("jokes Tapped")
+        let storyBoard = UIStoryboard(name: "ChuckNorrisJokes", bundle: nil)
+        
+       if  let jokesViewController = storyBoard.instantiateViewController(withIdentifier: "ChuckNorrisJokesTableViewController") as?
+        ChuckNorrisJokesTableViewController {
+            self.present(jokesViewController, animated: true, completion: nil)
+        }
+    }
+    
     //MARK: - Actions
     @IBAction func buttonLoginTapped(_ sender: UIButton) {
         email = textFieldEmail.text ?? ""

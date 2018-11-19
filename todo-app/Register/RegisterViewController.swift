@@ -14,7 +14,6 @@ class RegisterViewController: UIViewController {
     //MARK: Properties
     var presenter : RegisterPresenter?
     var realm: Realm!
-    var dbManager = DBManager()
 //    var userList: Results<RealmUser> {
 //        get {
 //            return realm.objects(RealmUser.self)

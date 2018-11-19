@@ -15,9 +15,14 @@
 		4C368D85219535C500ED0537 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C368D84219535C500ED0537 /* HomeTableViewController.swift */; };
 		4C368D892195381600ED0537 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C368D882195381600ED0537 /* Todo.swift */; };
 		4C3BF4B721954E8000F53AC7 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BF4B621954E8000F53AC7 /* TodoTableViewCell.swift */; };
+		4C44156C21A282940091C199 /* ChuckNorrisJokes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C44156B21A282940091C199 /* ChuckNorrisJokes.swift */; };
+		4C44157021A2885B0091C199 /* ChuckNorrisJokesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C44156F21A2885B0091C199 /* ChuckNorrisJokesTableViewController.swift */; };
+		4C44157221A288720091C199 /* ChuckNorrisJokes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C44157121A288720091C199 /* ChuckNorrisJokes.storyboard */; };
+		4C44157421A28A480091C199 /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C44157321A28A480091C199 /* Joke.swift */; };
+		4C44157821A28DE50091C199 /* JokeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C44157721A28DE50091C199 /* JokeTableViewCell.swift */; };
+		4C44157A21A2900E0091C199 /* JokesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C44157921A2900E0091C199 /* JokesDelegate.swift */; };
 		4C526889219D3F9F00697615 /* TodoCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C526888219D3F9F00697615 /* TodoCellDelegate.swift */; };
 		4C614A6B219A94340045ED43 /* AddTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C614A6A219A94340045ED43 /* AddTodoViewController.swift */; };
-		4C614A6E219AB3130045ED43 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C614A6D219AB3130045ED43 /* DBManager.swift */; };
 		4CD0F9A72193D209005679BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0F9A62193D209005679BD /* AppDelegate.swift */; };
 		4CD0F9AC2193D209005679BD /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CD0F9AA2193D209005679BD /* Login.storyboard */; };
 		4CD0F9AF2193D209005679BD /* todo_app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0F9AD2193D209005679BD /* todo_app.xcdatamodeld */; };
@@ -62,9 +67,14 @@
 		4C368D84219535C500ED0537 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		4C368D882195381600ED0537 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		4C3BF4B621954E8000F53AC7 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
+		4C44156B21A282940091C199 /* ChuckNorrisJokes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisJokes.swift; sourceTree = "<group>"; };
+		4C44156F21A2885B0091C199 /* ChuckNorrisJokesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisJokesTableViewController.swift; sourceTree = "<group>"; };
+		4C44157121A288720091C199 /* ChuckNorrisJokes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChuckNorrisJokes.storyboard; sourceTree = "<group>"; };
+		4C44157321A28A480091C199 /* Joke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joke.swift; sourceTree = "<group>"; };
+		4C44157721A28DE50091C199 /* JokeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeTableViewCell.swift; sourceTree = "<group>"; };
+		4C44157921A2900E0091C199 /* JokesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesDelegate.swift; sourceTree = "<group>"; };
 		4C526888219D3F9F00697615 /* TodoCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCellDelegate.swift; sourceTree = "<group>"; };
 		4C614A6A219A94340045ED43 /* AddTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewController.swift; sourceTree = "<group>"; };
-		4C614A6D219AB3130045ED43 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		4CD0F9A32193D209005679BD /* todo-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "todo-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CD0F9A62193D209005679BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CD0F9AB2193D209005679BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
@@ -129,10 +139,28 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		4C44156721A27A940091C199 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				4C44156B21A282940091C199 /* ChuckNorrisJokes.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		4C44156821A27CD80091C199 /* ChuckNorrisJokes */ = {
+			isa = PBXGroup;
+			children = (
+				4C44156F21A2885B0091C199 /* ChuckNorrisJokesTableViewController.swift */,
+				4C44157121A288720091C199 /* ChuckNorrisJokes.storyboard */,
+				4C44157721A28DE50091C199 /* JokeTableViewCell.swift */,
+				4C44157921A2900E0091C199 /* JokesDelegate.swift */,
+			);
+			path = ChuckNorrisJokes;
+			sourceTree = "<group>";
+		};
 		4C614A6C219AB2E90045ED43 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				4C614A6D219AB3130045ED43 /* DBManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -162,6 +190,8 @@
 		4CD0F9A52193D209005679BD /* todo-app */ = {
 			isa = PBXGroup;
 			children = (
+				4C44156821A27CD80091C199 /* ChuckNorrisJokes */,
+				4C44156721A27A940091C199 /* NetworkService */,
 				4C614A6C219AB2E90045ED43 /* Utils */,
 				4C368D7D219519E300ED0537 /* Home */,
 				4CD0F9E521940927005679BD /* Register */,
@@ -201,6 +231,7 @@
 				4C368D882195381600ED0537 /* Todo.swift */,
 				4C1C83A3219BE26E00DE075E /* RealmTodo.swift */,
 				4C1C83A5219BE34000DE075E /* RealmUser.swift */,
+				4C44157321A28A480091C199 /* Joke.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -351,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CD0F9B42193D20A005679BD /* LaunchScreen.storyboard in Resources */,
+				4C44157221A288720091C199 /* ChuckNorrisJokes.storyboard in Resources */,
 				4C368D7F21951A1800ED0537 /* Home.storyboard in Resources */,
 				4CD0F9B12193D20A005679BD /* Assets.xcassets in Resources */,
 				4CD0F9AC2193D209005679BD /* Login.storyboard in Resources */,
@@ -384,15 +416,25 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-todo-app/Pods-todo-app-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -432,17 +474,21 @@
 				4C1C83A8219CFEDC00DE075E /* HomeDelegate.swift in Sources */,
 				4CD0F9E02193FC6C005679BD /* LoginDelegate.swift in Sources */,
 				4C1C83A6219BE34000DE075E /* RealmUser.swift in Sources */,
+				4C44156C21A282940091C199 /* ChuckNorrisJokes.swift in Sources */,
 				4CD0F9E42194049C005679BD /* User.swift in Sources */,
-				4C614A6E219AB3130045ED43 /* DBManager.swift in Sources */,
+				4C44157821A28DE50091C199 /* JokeTableViewCell.swift in Sources */,
 				4C3BF4B721954E8000F53AC7 /* TodoTableViewCell.swift in Sources */,
 				4C526889219D3F9F00697615 /* TodoCellDelegate.swift in Sources */,
 				4C1C83A4219BE26F00DE075E /* RealmTodo.swift in Sources */,
 				4C614A6B219A94340045ED43 /* AddTodoViewController.swift in Sources */,
 				4C11E4DC219574FC00661F8C /* ViewTodoViewController.swift in Sources */,
 				4CD0F9EB2194097E005679BD /* RegisterDelegate.swift in Sources */,
+				4C44157021A2885B0091C199 /* ChuckNorrisJokesTableViewController.swift in Sources */,
 				4CD0F9E72194094D005679BD /* RegisterViewController.swift in Sources */,
 				4C368D85219535C500ED0537 /* HomeTableViewController.swift in Sources */,
+				4C44157A21A2900E0091C199 /* JokesDelegate.swift in Sources */,
 				4CD0F9AF2193D209005679BD /* todo_app.xcdatamodeld in Sources */,
+				4C44157421A28A480091C199 /* Joke.swift in Sources */,
 				4CD0F9A72193D209005679BD /* AppDelegate.swift in Sources */,
 				4C368D892195381600ED0537 /* Todo.swift in Sources */,
 			);

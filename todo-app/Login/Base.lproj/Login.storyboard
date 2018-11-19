@@ -123,6 +123,17 @@
                                     <constraint firstAttribute="bottom" secondItem="gyA-nw-efN" secondAttribute="bottom" constant="40" id="pXe-5Q-ndu"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfY-oS-JcY">
+                                <rect key="frame" x="101.5" y="288" width="117" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="117" id="JxI-2z-LpL"/>
+                                    <constraint firstAttribute="height" constant="30" id="hDG-EN-gVX"/>
+                                </constraints>
+                                <state key="normal" title="See Online Tasks"/>
+                                <connections>
+                                    <action selector="buttonSeeOnlineJokesTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hDI-Aa-CTm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -132,6 +143,8 @@
                             <constraint firstAttribute="bottom" secondItem="P0y-sy-Dg1" secondAttribute="bottom" id="Gbs-wh-1QC"/>
                             <constraint firstItem="uI4-Qb-jpu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Hqj-Cu-MMB"/>
                             <constraint firstItem="EmC-k0-Xcv" firstAttribute="top" secondItem="uI4-Qb-jpu" secondAttribute="bottom" id="Zyv-0L-6Ic"/>
+                            <constraint firstItem="P0y-sy-Dg1" firstAttribute="top" secondItem="nfY-oS-JcY" secondAttribute="bottom" constant="8" id="c3Q-gk-qHk"/>
+                            <constraint firstItem="nfY-oS-JcY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cG1-6v-tO9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uI4-Qb-jpu" secondAttribute="trailing" id="d9m-dW-NBq"/>
                             <constraint firstAttribute="trailing" secondItem="EmC-k0-Xcv" secondAttribute="trailing" id="kZ2-u2-xBp"/>
                             <constraint firstAttribute="trailing" secondItem="P0y-sy-Dg1" secondAttribute="trailing" id="ko6-6C-pHh"/>
