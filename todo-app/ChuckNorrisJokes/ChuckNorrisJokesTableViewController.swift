@@ -18,6 +18,7 @@ class ChuckNorrisJokesTableViewController: UITableViewController {
 
         presenter = JokesPresenter(delegate: self)
         self.presenter?.getJokes(query: "test")
+//        self.presenter?.makeRequest()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -25,7 +26,10 @@ class ChuckNorrisJokesTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    @IBAction func buttonBackTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -34,7 +38,6 @@ class ChuckNorrisJokesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
         return jokesList.count
     }
 

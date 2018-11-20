@@ -21,13 +21,19 @@ extension ChuckNorrisJokes : TargetType {
     
     var path: String {
         switch self {
-        case.view(let query):
-            return "/jokes/search?query=\(query)"
+        case.view:
+            return "/jokes/search"
         }
     }
     
     var method: Moya.Method {
-        return .get
+//        switch self {
+//        case .view(let query):
+            return .get
+            
+//        default:
+//            return .get
+//        }
     }
     
     var sampleData: Data {
@@ -37,11 +43,13 @@ extension ChuckNorrisJokes : TargetType {
     var task: Task {
         switch self {
         case .view(let query):
-            return .requestParameters(parameters: [query: query], encoding: JSONEncoding.default)
+            return .requestParameters(parameters: ["query": query], encoding: URLEncoding.queryString)
+//            return .requestParameters(parameters: ["query": query], encoding: JSONEncoding.default)
         }
     }
     
     var headers: [String : String]? {
-        return ["Content-Type": "application/json"]
+//        return ["Content-Type": "application/json"]
+        return ["Content-Type": "application/json; charset=utf-8"]
     }
 }

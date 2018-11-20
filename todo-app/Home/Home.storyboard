@@ -103,7 +103,96 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kMb-7t-apZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="N0g-z7-GtM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1803.75" y="696.25"/>
+            <point key="canvasLocation" x="4612" y="699"/>
+        </scene>
+        <!--Side Menu View Controller-->
+        <scene sceneID="XfZ-O1-Bqi">
+            <objects>
+                <viewController id="jJH-7f-6Fj" customClass="SideMenuViewController" customModule="todo_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cV0-Lt-dBj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHc-Fx-9zL">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="145"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee" translatesAutoresizingMaskIntoConstraints="NO" id="hkd-1Y-EAl">
+                                        <rect key="frame" x="30" y="40" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="XoZ-aS-lZA"/>
+                                            <constraint firstAttribute="width" constant="60" id="vkO-Dw-L0D"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgQ-sv-6oT">
+                                        <rect key="frame" x="110" y="55" width="86" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="Oro-yQ-Rkf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="cgQ-sv-6oT" firstAttribute="leading" secondItem="hkd-1Y-EAl" secondAttribute="trailing" constant="20" id="2r8-7i-ilR"/>
+                                    <constraint firstItem="hkd-1Y-EAl" firstAttribute="leading" secondItem="DHc-Fx-9zL" secondAttribute="leading" constant="30" id="34N-ha-igH"/>
+                                    <constraint firstAttribute="height" constant="145" id="DWM-sV-lzF"/>
+                                    <constraint firstItem="hkd-1Y-EAl" firstAttribute="top" secondItem="DHc-Fx-9zL" secondAttribute="top" constant="40" id="JEM-9N-Cf0"/>
+                                    <constraint firstItem="cgQ-sv-6oT" firstAttribute="top" secondItem="DHc-Fx-9zL" secondAttribute="top" constant="55" id="Wcj-Na-mWi"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ad-JM-K8E">
+                                <rect key="frame" x="30" y="153" width="87" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="KzY-TQ-oXO"/>
+                                </constraints>
+                                <state key="normal" title="Online Tasks">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onlineTasksTapped:" destination="jJH-7f-6Fj" eventType="touchUpInside" id="fH9-Gk-oO6"/>
+                                    <segue destination="4KM-sa-X7e" kind="show" id="tJP-Np-YKC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAV-MC-SHJ">
+                                <rect key="frame" x="30" y="191" width="48" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0aP-nK-34M"/>
+                                </constraints>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutTapped:" destination="jJH-7f-6Fj" eventType="touchUpInside" id="RaB-tw-6UN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.43187153340000001" green="0.73402518029999997" blue="0.96080952880000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="EAV-MC-SHJ" firstAttribute="leading" secondItem="HFt-NM-KqE" secondAttribute="leading" constant="30" id="2ln-Q0-JnA"/>
+                            <constraint firstItem="DHc-Fx-9zL" firstAttribute="top" secondItem="cV0-Lt-dBj" secondAttribute="top" id="9UL-St-6DQ"/>
+                            <constraint firstItem="7Ad-JM-K8E" firstAttribute="top" secondItem="DHc-Fx-9zL" secondAttribute="bottom" constant="8" id="EGR-DU-k1X"/>
+                            <constraint firstItem="7Ad-JM-K8E" firstAttribute="leading" secondItem="HFt-NM-KqE" secondAttribute="leading" constant="30" id="FJO-my-LGF"/>
+                            <constraint firstItem="EAV-MC-SHJ" firstAttribute="top" secondItem="7Ad-JM-K8E" secondAttribute="bottom" constant="8" id="IyM-JW-e4u"/>
+                            <constraint firstAttribute="trailing" secondItem="DHc-Fx-9zL" secondAttribute="trailing" id="NDo-0M-1b4"/>
+                            <constraint firstItem="DHc-Fx-9zL" firstAttribute="leading" secondItem="cV0-Lt-dBj" secondAttribute="leading" id="q4h-4k-Yv6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HFt-NM-KqE"/>
+                    </view>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="wFK-S5-lgu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RFH-vZ-KBx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4612" y="-107"/>
+        </scene>
+        <!--ChuckNorrisJokes-->
+        <scene sceneID="5Qe-F7-bYO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ChuckNorrisJokes" id="4KM-sa-X7e" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5VM-tw-vgk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5214" y="-309"/>
         </scene>
         <!--Todo List-->
         <scene sceneID="ffL-fh-OC1">
@@ -125,12 +214,20 @@
                             </textAttributes>
                             <items>
                                 <navigationItem title="TODO" largeTitleDisplayMode="always" id="bDh-d8-Ob0">
-                                    <barButtonItem key="leftBarButtonItem" title="Logout" id="MYd-AK-jJT">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <action selector="barButtonLogoutTapped:" destination="Uof-Su-6Eo" id="fjZ-Ml-6JK"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <leftBarButtonItems>
+                                        <barButtonItem title="Logout" id="MYd-AK-jJT">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="barButtonLogoutTapped:" destination="Uof-Su-6Eo" id="fjZ-Ml-6JK"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem title="menu" id="O4Y-ow-gZY">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <segue destination="Vlf-vs-VQA" kind="presentation" id="8yr-6i-pZW"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </leftBarButtonItems>
                                     <barButtonItem key="rightBarButtonItem" title="Add" id="txz-OK-aYm">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
@@ -222,7 +319,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4vI-jo-b1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="991.20000000000005" y="-107.49625187406298"/>
+            <point key="canvasLocation" x="2870" y="-107"/>
         </scene>
         <!--TODO-->
         <scene sceneID="HYe-4L-oIH">
@@ -315,7 +412,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mBG-vv-LEg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2626.4000000000001" y="-109.29535232383809"/>
+            <point key="canvasLocation" x="2870" y="1549"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tGO-r8-Qap">
@@ -340,7 +437,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e3r-Zr-DeL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1803.75" y="-107.74647887323944"/>
+            <point key="canvasLocation" x="2870" y="699"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cxg-zm-Rue">
@@ -365,11 +462,37 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DBg-Cp-mUW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="992" y="697"/>
+            <point key="canvasLocation" x="3769" y="699"/>
+        </scene>
+        <!--Side Menu Navigation Controller-->
+        <scene sceneID="RFd-N2-7Ia">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" hidesBarsOnSwipe="YES" id="Vlf-vs-VQA" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kCv-xg-LYt">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.43187153340000001" green="0.73402518029999997" blue="0.96080952880000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8V4-J5-zBJ">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="jJH-7f-6Fj" kind="relationship" relationship="rootViewController" id="whK-fR-3vU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NTv-N9-gue" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3770" y="-107"/>
         </scene>
     </scenes>
     <resources>
         <image name="checkbox-unchecked-48px" width="36" height="36"/>
+        <image name="coffee" width="409.60000610351562" height="409.60000610351562"/>
     </resources>
     <color key="tintColor" red="0.43187153340000001" green="0.73402518029999997" blue="0.96080952880000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

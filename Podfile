@@ -6,5 +6,6 @@ target 'todo-app' do
   # Pods for todo-app
     pod 'RealmSwift'
     pod 'Moya/RxSwift', '~> 11.0'
-
+    pod 'Moya-ObjectMapper/RxSwift'
+    pod 'SideMenu'
 end

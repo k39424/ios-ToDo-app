@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C11E4DC219574FC00661F8C /* ViewTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C11E4DB219574FC00661F8C /* ViewTodoViewController.swift */; };
+		4C19510921A3D6C6002F978A /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C19510821A3D6C6002F978A /* SideMenuViewController.swift */; };
 		4C1C83A4219BE26F00DE075E /* RealmTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C83A3219BE26E00DE075E /* RealmTodo.swift */; };
 		4C1C83A6219BE34000DE075E /* RealmUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C83A5219BE34000DE075E /* RealmUser.swift */; };
 		4C1C83A8219CFEDC00DE075E /* HomeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C83A7219CFEDC00DE075E /* HomeDelegate.swift */; };
@@ -60,6 +61,7 @@
 		13A009B34BC6D408FE07624A /* Pods_todo_appUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_todo_appUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D11F819281F3624FEC4F0C2 /* Pods-todo-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-todo-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-todo-app/Pods-todo-app.debug.xcconfig"; sourceTree = "<group>"; };
 		4C11E4DB219574FC00661F8C /* ViewTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTodoViewController.swift; sourceTree = "<group>"; };
+		4C19510821A3D6C6002F978A /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		4C1C83A3219BE26E00DE075E /* RealmTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTodo.swift; sourceTree = "<group>"; };
 		4C1C83A5219BE34000DE075E /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
 		4C1C83A7219CFEDC00DE075E /* HomeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		4C368D7D219519E300ED0537 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				4C19510821A3D6C6002F978A /* SideMenuViewController.swift */,
 				4C368D7E21951A1800ED0537 /* Home.storyboard */,
 				4C1C83A7219CFEDC00DE075E /* HomeDelegate.swift */,
 				4C368D84219535C500ED0537 /* HomeTableViewController.swift */,
@@ -418,11 +421,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-todo-app/Pods-todo-app-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya-ObjectMapper/Moya_ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -430,11 +436,14 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -474,6 +483,7 @@
 				4C1C83A8219CFEDC00DE075E /* HomeDelegate.swift in Sources */,
 				4CD0F9E02193FC6C005679BD /* LoginDelegate.swift in Sources */,
 				4C1C83A6219BE34000DE075E /* RealmUser.swift in Sources */,
+				4C19510921A3D6C6002F978A /* SideMenuViewController.swift in Sources */,
 				4C44156C21A282940091C199 /* ChuckNorrisJokes.swift in Sources */,
 				4CD0F9E42194049C005679BD /* User.swift in Sources */,
 				4C44157821A28DE50091C199 /* JokeTableViewCell.swift in Sources */,

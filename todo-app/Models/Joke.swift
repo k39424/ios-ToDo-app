@@ -7,11 +7,20 @@
 //
 
 import Foundation
+import ObjectMapper
 
-struct Joke {
-    let value: String
+struct Joke: Mappable {
+    var value: String?
     
     init(value: String) {
         self.value = value
+    }
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        value <- map["value"] 
     }
 }
