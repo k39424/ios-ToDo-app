@@ -18,7 +18,6 @@ class ChuckNorrisJokesTableViewController: UITableViewController {
 
         presenter = JokesPresenter(delegate: self)
         self.presenter?.getJokes(query: "test")
-//        self.presenter?.makeRequest()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -40,10 +39,9 @@ class ChuckNorrisJokesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jokesList.count
     }
-
-    
+ 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let identifier = "JokeTableViewCell"
+        let identifier = "JokeCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
             as? JokeTableViewCell else {
                 fatalError("The dequeued cell is not a joke")
@@ -54,6 +52,12 @@ class ChuckNorrisJokesTableViewController: UITableViewController {
         // Configure the cell...
 
         return cell
+    }
+    
+    func makeJokes() {
+        jokesList.append(Joke(value: "Hello World"))
+        jokesList.append(Joke(value: "Hello Another World"))
+        jokesList.append(Joke(value: "Hello Another Another World"))
     }
  
 
@@ -105,7 +109,10 @@ class ChuckNorrisJokesTableViewController: UITableViewController {
 }
 
 extension ChuckNorrisJokesTableViewController: JokesDelegate {
-    func operationResult(message: String) {
+    func operationResult(jokeList: Array<Joke>, message: String) {
         print(message)
+        self.jokesList = jokeList
+       self.tableView.reloadData()
     }
+    
 }

@@ -9,14 +9,15 @@
 import Foundation
 import ObjectMapper
 
-struct JokeResponsePayload: Mappable {
-    var result: String?
+class JokeResponsePayload: Mappable {
+    var result: Array<[String:Any]>?
     
-    init?(map: Map) {
+    required init?(map: Map) {
         
     }
     
-    mutating func mapping(map: Map) {
+    func mapping(map: Map) {
         result <- map["result"]
+        
     }
 }

@@ -123,7 +123,7 @@
                                     <constraint firstAttribute="bottom" secondItem="gyA-nw-efN" secondAttribute="bottom" constant="40" id="pXe-5Q-ndu"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfY-oS-JcY">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfY-oS-JcY">
                                 <rect key="frame" x="101.5" y="288" width="117" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="117" id="JxI-2z-LpL"/>

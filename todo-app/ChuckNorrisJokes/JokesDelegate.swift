@@ -12,140 +12,52 @@ import Alamofire
 import ObjectMapper
 
 protocol JokesDelegate{
-    func operationResult(message: String)
+    func operationResult(jokeList: Array<Joke>, message: String)
 }
 
 class JokesPresenter {
     let jokesProvider = MoyaProvider<ChuckNorrisJokes>()
     var delegate : JokesDelegate
+    var jokesList : Array<Joke> = []
     
     init(delegate: JokesDelegate) {
         self.delegate = delegate
     }
     
     func getJokes(query: String) {
-        jokesProvider.request(.view(query: "test")) { result in
+        
+        self.jokesProvider.request(.view(query: "test")) { result in
             switch result {
                 case .success:
                     do {
-//                        self.state = .ready(try response.map(MarvelResponse<Comic>.self).data.results)
-//                        guard let jsonResponse = try result.value?.mapJSON() else {
-//                            print("Failed to parse jsonResponse")
-//                            return
-//                        }
-                         let jsonResponse = try result.value?.mapJSON()
-//                        let jsonResult = Mapper<JokeResponsePayload>().map(JSONObject: jsonResponse)
-//                        print(jsonResult?.result)
-                        print(String(describing: jsonResponse))
-                        let jsonResult = try Mapper<JokeResponsePayload>().map(JSONObject: jsonResponse)
+                        guard let json = try result.value?.mapJSON() else {
+                            self.delegate.operationResult(jokeList: self.jokesList, message: "Failed to get Jokes")
+                            return
+                        }
                         
+                        guard let jsonResult = Mapper<JokeResponsePayload>().map(JSONObject: json)
+                            else {
+                                self.delegate.operationResult(jokeList: self.jokesList, message: "Failed to get Jokes")
+                                return
+                        }
                         
-                        
-                        
-//                        let jsonPayload = Mapper<JokeResponsePayload>().map(JSONObject: jsonResponse)
-//                        let jsonResult = Mapper<JokeResponsePayload>().map(JSONObject: jsonResponse)
-//                        print(jsonResult?.result)
-//                        let jsonJokeList = Mapper<Joke>().map(JSONObject: jsonPayload)
-//                        let jsonJokeList = Mapper<Joke>().map
-//                        print(jsonJokeList?.value)
-                        
-//                        let jsonResponse = try result.value?.mapJSON()
-                        
-//                        guard let responseJSON = result.value as? [String: AnyObject] else {
-//                            failure(0,"Error reading response")
-//                            return
-//                        }
-                        
-//                        guard let jsonResponse = try result.value?.mapJSON() as? [String: AnyObject] else {
-//                            self.delegate.operationResult(message: "Failed to Parse")
-//                            return
-//                        }
-                        
-//                        guard let test = try result.value?.mapJSON() as? [String: AnyObject] else {
-//                            print("Failed to Parse Test")
-//                            return
-//                        }
-//
-//                        print(test.values)
-//                        let testJokes = Mapper<Joke>().map(JSONObject: test)
                        
-//                        let testJokes2 = Mapper<Joke>().mapArray(JSONObject: testJokes)
-//                        let testJokes2 = Mapper<Joke>().map(JSONObject: test)
+                        guard let jokes = Mapper<Joke>().mapArray(JSONObject: jsonResult.result) else {
+                            self.delegate.operationResult(jokeList: self.jokesList, message: "Failed to get Jokes")
+                            return
+                        }
                         
-//                        let customer = Mapper<Customer>().map(JSONObject: responseJSON)
-
-//                        print(testJokes?.value)
-//                        print(testJokes)
-//                        for joke in testJokes {
-//                            print(joke.)
-//                        }
+                        for test in jokes {
+                            print(test.value ?? "We dont have jokes")
+                        }
+                    
+                        self.jokesList = jokes
                         
-//                        guard let jsonObj = try result.value?.mapJSON() as? Array<[String: AnyObject]> else {
-//
-//                            print("failed to parse jsonObj")
-//                            return
-//                        }
-                        
-                        
-//                        let jsonResult = Mapper
-                        
-                        
-//                        guard let jokes = Mapper<Joke>().mapArray(JSONObject: test) else {
-//                            print("Failed to Make Jokes")
-//                            return
-//                        }
-                        
-//                        let jsonResult = Mapper<Joke>().map(JSON: jsonResponse)
-//                        print("jsonResult: \(jsonResult?.value)")
-                        
-//                        let customer = Mapper<Customer>().map(JSONObject: responseJSON)
-//                        print("JSONRESPONSE: \(jsonResponse.values)")
-                        
-//                      let jsonArray = Mapper<Joke>().mapArray(JSONObject: jsonResponse)
-                        
-//                        let jsonArray = Mapper<Joke>().mapArray(JSONString: String(describing: jsonResult))
-
-//                        guard let responseJSON = jsonResponse.values as? Array<[String: AnyObject]> else {
-//                            print("Failed to parse array")
-//                            return
-//                        }
-//                        guard let customers:[Customer] = Mapper<Customer>().mapArray(JSONArray: responseJSON) else {
-//                            failure(0,"Error mapping response")
-//                            return
-//                        }
-                        
-//                        guard let jokes = Mapper<Joke>().mapArray(JSONObject: jsonResponse) else {
-//                            print("Failed to Make Jokes")
-//                            return
-//                        }
-                        
-//                        guard let jokes = Mapper<Joke>().mapArray(JSONArray: jsonResponse) else {
-//                            print("Failed to Make Jokes")
-//                            return
-//                        }
-//
-//                        print("JSONArray Count: \(jsonResponse.count)")
-//                        for jsonObject in jsonResponse {
-//                            print("Object: \(jsonObject.value)")
-//                        }
-//                        for jsonObject in jsonArray! {
-//                            print("Object: \(jsonObject.value)")
-//                        }
-//                        print("JOKE: \(test?.value)")
-//                        let test = Joke?(JSONString: String(describing:jsonResponse))
-//                        let joke = Mapper<Joke>().map(JSONString: String(describing: jsonResponse))
-                        
-//                        print("JOKE: \(String(describing: joke?.value))")
-//                        let joke = Mapper<Joke>().map(JSONString: jsonResponse)
-                        /*
-                         let person = Mapper<Person>().map(JSONString: JSONString)
-                         // It also supports object to json
-                         let JSONString = Mapper().toJSONString(person, prettyPrint: true) */
+                        self.delegate.operationResult(jokeList: self.jokesList, message: "Succcess getting jokes")
                         
                     } catch {
                         print("Failed to Parse Response: \(error)")
                     }
-                
                 case .failure:
                     print("Failure")
             }
@@ -154,7 +66,7 @@ class JokesPresenter {
 }
 
 extension JokesPresenter: JokesDelegate {
-    func operationResult(message: String) {
+    func operationResult(jokeList: Array<Joke>, message: String) {
         print(message)
     }
     
