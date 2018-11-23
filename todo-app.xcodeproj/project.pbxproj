@@ -10,6 +10,7 @@
 		4C11E4DC219574FC00661F8C /* ViewTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C11E4DB219574FC00661F8C /* ViewTodoViewController.swift */; };
 		4C19510921A3D6C6002F978A /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C19510821A3D6C6002F978A /* SideMenuViewController.swift */; };
 		4C19510B21A53828002F978A /* JokeResponsePayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C19510A21A53828002F978A /* JokeResponsePayload.swift */; };
+		4C19510D21A7E958002F978A /* TableJokesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C19510C21A7E958002F978A /* TableJokesViewController.swift */; };
 		4C1C83A4219BE26F00DE075E /* RealmTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C83A3219BE26E00DE075E /* RealmTodo.swift */; };
 		4C1C83A6219BE34000DE075E /* RealmUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C83A5219BE34000DE075E /* RealmUser.swift */; };
 		4C1C83A8219CFEDC00DE075E /* HomeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C83A7219CFEDC00DE075E /* HomeDelegate.swift */; };
@@ -64,6 +65,7 @@
 		4C11E4DB219574FC00661F8C /* ViewTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTodoViewController.swift; sourceTree = "<group>"; };
 		4C19510821A3D6C6002F978A /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		4C19510A21A53828002F978A /* JokeResponsePayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeResponsePayload.swift; sourceTree = "<group>"; };
+		4C19510C21A7E958002F978A /* TableJokesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableJokesViewController.swift; sourceTree = "<group>"; };
 		4C1C83A3219BE26E00DE075E /* RealmTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTodo.swift; sourceTree = "<group>"; };
 		4C1C83A5219BE34000DE075E /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
 		4C1C83A7219CFEDC00DE075E /* HomeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				4C44157121A288720091C199 /* ChuckNorrisJokes.storyboard */,
 				4C44157721A28DE50091C199 /* JokeTableViewCell.swift */,
 				4C44157921A2900E0091C199 /* JokesDelegate.swift */,
+				4C19510C21A7E958002F978A /* TableJokesViewController.swift */,
 			);
 			path = ChuckNorrisJokes;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-todo-app/Pods-todo-app-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/IGListKit/IGListKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
@@ -430,6 +434,7 @@
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -437,6 +442,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
@@ -444,6 +450,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,6 +507,7 @@
 				4C368D85219535C500ED0537 /* HomeTableViewController.swift in Sources */,
 				4C44157A21A2900E0091C199 /* JokesDelegate.swift in Sources */,
 				4CD0F9AF2193D209005679BD /* todo_app.xcdatamodeld in Sources */,
+				4C19510D21A7E958002F978A /* TableJokesViewController.swift in Sources */,
 				4C44157421A28A480091C199 /* Joke.swift in Sources */,
 				4CD0F9A72193D209005679BD /* AppDelegate.swift in Sources */,
 				4C368D892195381600ED0537 /* Todo.swift in Sources */,

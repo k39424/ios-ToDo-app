@@ -9,4 +9,6 @@ target 'todo-app' do
 #    pod 'Moya-ObjectMapper/RxSwift'
     pod 'ObjectMapper'
     pod 'SideMenu'
+    pod 'SVProgressHUD'
+    pod 'IGListKit'
 end

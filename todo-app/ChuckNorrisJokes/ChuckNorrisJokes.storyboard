@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -69,6 +70,31 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pw8-uN-gC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-26.399999999999999" y="76.911544227886068"/>
+        </scene>
+        <!--Table Jokes View Controller-->
+        <scene sceneID="B2q-lN-Ybm">
+            <objects>
+                <viewController id="Z3c-sS-A1P" customClass="TableJokesViewController" customModule="todo_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="chg-h0-rP1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C6H-VD-tAX" customClass="IGListCollectionView">
+                                <rect key="frame" x="0.0" y="112" width="375" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.90934666450000001" green="0.37575537689999999" blue="0.4560796647" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="2U8-sI-T7b"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="C6H-VD-tAX" id="OIJ-JJ-Js6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Gl-lZ-h6f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="834.39999999999998" y="79.610194902548727"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TQK-OK-Sva">

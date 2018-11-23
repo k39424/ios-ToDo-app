@@ -8,19 +8,46 @@
 
 import Foundation
 import ObjectMapper
+import IGListKit
 
-struct Joke: Mappable {
+class Joke: Mappable {
     var value: String?
     
     init(value: String) {
         self.value = value
     }
     
-    init?(map: Map) {
+    required init?(map: Map) {
         
     }
     
-    mutating func mapping(map: Map) {
+     func mapping(map: Map) {
         value <- map["value"]
+    }
+}
+
+extension Joke: Equatable {
+    static func == (lhs: Joke, rhs: Joke) -> Bool {
+        return rhs.value == lhs.value
+    }
+    
+    
+}
+
+extension Joke: ListDiffable {
+    func diffIdentifier() -> NSObjectProtocol {
+        return NSString(string: value ?? "")
+    }
+    
+    func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
+        guard let object = object as? Joke else {
+            return false
+        }
+        
+        if value != object.value {
+            return false
+        }
+        
+        return self == object
     }
 }

@@ -25,9 +25,6 @@ class HomeTableViewController: UITableViewController {
         presenter = HomePresenter(delegate: self)
         print("Hello \(user.email)")
         getTodos()
-//        generateTodos()
-//        addTodosToCoreData()
-//        getTodosFromCoreData()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -46,8 +43,6 @@ class HomeTableViewController: UITableViewController {
                 case .update(_, let deletions, let insertions, let updates):
                     let fromRow = {(row: Int) in
                         return IndexPath(row: row, section: 0)}
-//                    tableView.reloadData()
-//                    print("Row Index= \(fromRow)")
                     print("@viewWillAppear Insertion: \(insertions.count) deletions: \(deletions.count) updates: \(updates.count)")
                     
                     if insertions.count > 0 {
@@ -62,40 +57,14 @@ class HomeTableViewController: UITableViewController {
                     } else {
                         print("Nothing to do here")
                     }
-//                    tableView.insertRows(at: insertions.map(fromRow), with: .automatic)
-//                    tableView.reloadRows(at: updates.map(fromRow), with: .automatic)
-//                    tableView.deleteRows(at: deletions.map(fromRow), with: .automatic)
                 break
                 
-//                    tableView.applyChanges(deletions: deletions, insertions: insertions, updates: updates)
                 default: break
             }
         }
         
-//        case .update(_, let deletions, let insertions, let updates):
-//        let fromRow = {(row: Int) in
-//            return IndexPath(row: row, section: 0)}
-//
-//        beginUpdates()
-//        deleteRows(at: deletions.map(fromRow), with: .automatic)
-//        insertRows(at: insertions.map(fromRow), with: .automatic)
-//        reloadRows(at: updates.map(fromRow), with: .none)
-//        endUpdates()
-        
-        
-        /*itemsToken = items?.observe { [weak tableView] changes in
-         guard let tableView = tableView else { return }
-         
-         switch changes {
-         case .initial:
-         tableView.reloadData()
-         case .update(_, let deletions, let insertions, let updates):
-         tableView.applyChanges(deletions: deletions, insertions: insertions, updates: updates)
-         case .error: break
-         }
-         }*/
     }
-    
+    //MARK: - Actions
     @IBAction func barButtonLogoutTapped(_ sender: Any) {
         logout()
     }
@@ -128,10 +97,6 @@ class HomeTableViewController: UITableViewController {
                 fatalError("Cell is not TodoTableViewCell")
         }
         
-//        let todo = todos[indexPath.row]
-//        cell.todoStatus.text = todo.status == true ? "Done" : "Not Done"
-//        cell.todoDate.text = dateFormatter.string(from: todo.date)
-//        cell.todoTitle.text = todo.title
         let todo = todoList?[indexPath.row]
         cell.delegate = self
         

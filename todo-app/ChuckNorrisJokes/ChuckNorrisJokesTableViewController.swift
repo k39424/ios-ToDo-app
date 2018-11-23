@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class ChuckNorrisJokesTableViewController: UITableViewController {
 
@@ -14,9 +15,11 @@ class ChuckNorrisJokesTableViewController: UITableViewController {
     var presenter : JokesPresenter?
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
         presenter = JokesPresenter(delegate: self)
+        SVProgressHUD.show()
         self.presenter?.getJokes(query: "test")
         
         // Uncomment the following line to preserve selection between presentations
@@ -113,6 +116,7 @@ extension ChuckNorrisJokesTableViewController: JokesDelegate {
         print(message)
         self.jokesList = jokeList
        self.tableView.reloadData()
+        SVProgressHUD.dismiss()
     }
     
 }
